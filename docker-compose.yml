@@ -3,7 +3,7 @@ services:
     build:
       context: .
       args:
-        API_URL: 'http://localhost:8000'
+        API_URL: 'http://localhost:8000/api'
     ports:
       - '3000:3000'
     volumes:

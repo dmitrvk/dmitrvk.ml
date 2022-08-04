@@ -1,0 +1,19 @@
+services:
+  frontend:
+    restart: always
+    image: dmitrvkml_frontend
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+
+  backend:
+    restart: always
+    image: dmitrvkml_backend
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:

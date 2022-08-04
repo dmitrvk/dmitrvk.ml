@@ -1,0 +1,21 @@
+dmitrvk.ml {
+    encode gzip
+
+    handle /api/* {
+      reverse_proxy http://backend:8000
+    }
+
+    handle {
+      root * /srv
+      try_files {path} /index.html
+      file_server
+    }
+}
+
+www.dmitrvk.ml {
+    redir https://dmitrvk.ml{uri}
+}
+
+s.dmitrvk.ml {
+    respond "Not available"
+}
