@@ -3,14 +3,7 @@
 ## Local development
 
 ```
-npm install
-npm start
+docker-compose up --build
 ```
 
 Open http://localhost:3000/
-
-## Build for Production
-
-```
-npm run build
-```

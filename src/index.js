@@ -9,6 +9,7 @@ import './index.css';
 import App from './App';
 import Music from "./pages/Music";
 import Notes from "./pages/Notes";
+import Test from "./pages/Test";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -18,6 +19,7 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="notes" element={<Notes />} />
       <Route path="music" element={<Music />} />
+      <Route path="test" element={<Test />} />
     </Routes>
   </BrowserRouter>
 );

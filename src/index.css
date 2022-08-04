@@ -28,6 +28,7 @@ a {
   font-size: 16px;
   height: 64px;
   line-height: 64px;
+  outline: 0;
   text-decoration: none;
   width: 100%;
 }
@@ -35,6 +36,10 @@ a {
 a :hover {
   background: rgba(255, 255, 255, 0.5);
   color: #ec9706;
+}
+
+.a-test {
+  color: #c17300;
 }
 
 ul {
@@ -45,6 +50,49 @@ ul {
 
 li {
   display: block;
+}
+
+form {
+  display: grid;
+  margin: 16px;
+  font-size: 16px;
+}
+
+input {
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 100%;
+  font-weight: 300;
+  margin: 8px;
+  outline: 0;
+}
+
+input[type="email"] {
+  padding: 8px;
+  outline: 0;
+}
+
+input[type="submit"] {
+  background: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding: 16px;
+}
+
+input[type="submit"]:focus {
+  background: rgba(255, 255, 255, 0.5);
+  color: #ec9706;
+}
+
+input[type="submit"]:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: #ec9706;
+}
+
+input[type="submit"]:active {
+  background: rgba(255, 255, 255, 0.4);
+  color: #ec9706;
+  cursor: pointer;
 }
 
 footer {
