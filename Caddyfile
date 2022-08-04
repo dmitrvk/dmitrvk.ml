@@ -17,5 +17,5 @@ www.dmitrvk.ml {
 }
 
 s.dmitrvk.ml {
-    respond "Not available"
+    reverse_proxy http://short:8000
 }

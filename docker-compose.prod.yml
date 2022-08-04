@@ -9,6 +9,8 @@ services:
       - $HOME/public:/srv/public
       - caddy_data:/data
       - caddy_config:/config
+    networks:
+      - dmitrvkml_network
 
   backend:
     restart: always
@@ -18,3 +20,8 @@ volumes:
   caddy_data:
     external: true
   caddy_config:
+
+networks:
+  dmitrvkml_network:
+    external: true
+    name: dmitrvkml_network
