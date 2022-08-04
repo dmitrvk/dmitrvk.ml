@@ -1,9 +1,7 @@
-import EmailForm from "../components/EmailForm"
+import LoginForm from "../components/LoginForm"
 
 export default function Test() {
   return (
-    <main>
-      <EmailForm />
-    </main>
+    <LoginForm />
   );
 }

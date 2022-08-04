@@ -3,14 +3,14 @@ import React from 'react';
 export default class EmailForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {email: ''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({email: event.target.value});
   }
 
   handleSubmit(event) {
@@ -21,7 +21,7 @@ export default class EmailForm extends React.Component {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({'email': this.state.value}),
+        body: JSON.stringify({'email': this.state.email}),
       },
     );
 
@@ -35,11 +35,18 @@ export default class EmailForm extends React.Component {
           <input
             type="email"
             name="email"
-            value={this.state.value}
+            value={this.state.email}
+            maxLength="254"
             placeholder="mail@example.com"
             onChange={this.handleChange}
           />
-          <input type="submit" value="Send mail" />
+          <input
+            type="password"
+            name="password"
+            maxLength="128"
+            placeholder="********"
+          />
+          <input type="submit" value="Log in" />
         </form>
       </main>
     );
