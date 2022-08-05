@@ -1,0 +1,62 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: python -m pip install --upgrade pip -r api/requirements.txt
+
+    - name: Run flake8
+      run: flake8 api
+
+  deploy:
+    needs: lint
+
+    if: github.event_name == 'push'
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Log in to Container Registry
+      run: echo "${{ secrets.PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Build Frontend Image
+      run: docker build --build-arg API_URL='https://dmitrvk.ml/api' --tag ghcr.io/dmitrvk/dmitrvkml_frontend:latest --file Dockerfile.prod .
+
+    - name: Build Backend Image
+      run: docker build --tag ghcr.io/dmitrvk/dmitrvkml_backend:latest --file ./api/Dockerfile.prod ./api
+
+    - name: Push Frontend Image
+      run: docker push ghcr.io/dmitrvk/dmitrvkml_frontend
+
+    - name: Push Backend Image
+      run: docker push ghcr.io/dmitrvk/dmitrvkml_backend
+
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        script: cd ~/dmitrvk.ml && git pull && docker-compose --file docker-compose.prod.yml pull && docker-compose --file docker-compose.prod.yml up -d

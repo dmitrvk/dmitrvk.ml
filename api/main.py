@@ -23,12 +23,12 @@ router = APIRouter()
 
 
 class SendMail(BaseModel):
-  email: EmailStr
+    email: EmailStr
 
 
 @router.post('/mail')
 async def send_mail(request_body: SendMail) -> None:
-  print(f'Received email "{request_body.email}"')
+    print(f'Received email "{request_body.email}"')
 
 
 app.include_router(router, prefix='/api')
