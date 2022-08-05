@@ -1,7 +1,7 @@
 services:
   frontend:
     restart: always
-    image: dmitrvkml_frontend
+    image: ghcr.io/dmitrvk/dmitrvkml_frontend:latest
     ports:
       - '80:80'
       - '443:443'
@@ -14,7 +14,7 @@ services:
 
   backend:
     restart: always
-    image: dmitrvkml_backend
+    image: ghcr.io/dmitrvk/dmitrvkml_backend:latest
     networks:
       - dmitrvkml_network
 
