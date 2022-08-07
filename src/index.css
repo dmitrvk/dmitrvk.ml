@@ -5,8 +5,8 @@ html {
 }
 
 body {
-  background: #ec9706;
-  color: #eeeeee;
+  background: #e1e1e1;
+  color: #1e1e1e;
   font-family: 'Roboto Mono', monospace;
   font-size: 12px;
   font-weight: 300;
@@ -24,7 +24,7 @@ main {
 }
 
 a {
-  color: #e1e1e1;
+  color: #1e1e1e;
   font-size: 16px;
   height: 64px;
   line-height: 64px;
@@ -33,13 +33,21 @@ a {
   width: 100%;
 }
 
-a :hover {
-  background: rgba(255, 255, 255, 0.5);
-  color: #ec9706;
+li {
+  transition-property: transform;
+  transition-duration: 0.1;
+}
+
+li:focus, li:hover {
+  transform: scale(1.05);
+}
+
+li:active {
+  transform: scale(1.00);
 }
 
 .a-test {
-  color: #c17300;
+  color: #a5a5a5;
 }
 
 ul {
@@ -73,22 +81,12 @@ input[type="submit"] {
   color: inherit;
   cursor: pointer;
   padding: 16px;
-}
-
-input[type="submit"]:focus {
-  background: rgba(255, 255, 255, 0.5);
-  color: #ec9706;
-}
-
-input[type="submit"]:hover {
-  background: rgba(255, 255, 255, 0.5);
-  color: #ec9706;
+  transition-property: transform;
+  transition-duration: 0.1;
 }
 
 input[type="submit"]:active {
-  background: rgba(255, 255, 255, 0.4);
-  color: #ec9706;
-  cursor: pointer;
+  transform: scale(0.95);
 }
 
 footer {
