@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
 html {
-  width: 100%;
+  width: 100vw;
 }
 
 body {
@@ -10,16 +10,30 @@ body {
   font-family: 'Roboto Mono', monospace;
   font-size: 12px;
   font-weight: 300;
-  height: 100%;
+  height: 100vh;
   margin: 0;
   padding: 0;
 }
 
 h1 {
-  margin: 16px;
+  margin: 0;
+  padding: 16px;
+}
+
+.App {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto auto;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 main {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
   text-align: center;
 }
 
@@ -60,6 +74,24 @@ li {
   display: block;
 }
 
+.social {
+  align-self: end;
+  text-align: center;
+}
+
+.social-icon {
+  height: 24px;
+  margin: 8px;
+  width: 24px;
+  filter:  /* #1e1e1e */
+    invert(22%)
+    sepia(24%)
+    saturate(7%)
+    hue-rotate(8deg)
+    brightness(92%)
+    contrast(100%);
+}
+
 form {
   display: grid;
   margin: 16px;
@@ -90,10 +122,11 @@ input[type="submit"]:active {
 }
 
 footer {
-  bottom: 0%;
+  align-self: end;
   font-size: 16px;
   margin-bottom: 16px;
-  position: fixed;
+  margin: 0;
   text-align: center;
-  width: 100%;
+  width: 100vw;
+  height: 80px;
 }
