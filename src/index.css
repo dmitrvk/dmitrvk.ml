@@ -74,6 +74,15 @@ li {
   display: block;
 }
 
+p {
+  margin: 0;
+}
+
+.resume {
+  width: 100%;
+  max-width: 600px;
+}
+
 .social {
   align-self: end;
   text-align: center;
@@ -126,7 +135,8 @@ footer {
   font-size: 16px;
   margin-bottom: 16px;
   margin: 0;
+  margin-top: 16px;
   text-align: center;
   width: 100vw;
-  height: 80px;
+  height: 60px;
 }
