@@ -6,8 +6,8 @@ function fillNotesList(data) {
 
   for (let i = 0; i < data.length; i++) {
     let pdf_name = data[i].name.replace('.tex', '.pdf');
-    let pdf_url = 'https://docs.google.com/viewer?url=https://dmitrvk.ml/public/notes/' + pdf_name;
     let note_name = pdf_name.replace('.pdf', '');
+    let pdf_url = `https://docs.google.com/viewer?url=https://dmitrvk.ml/public/notes/${note_name}/${pdf_name}`;
 
     notes.innerHTML += `<a href="${pdf_url}"><li>${note_name}</li></a>`;
   }
