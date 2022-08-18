@@ -173,3 +173,14 @@ footer {
   width: 180px;
   justify-self: center;
 }
+
+hr {
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.page {
+  background: white;
+  width: 100vw;
+  max-width: 1240px;
+}

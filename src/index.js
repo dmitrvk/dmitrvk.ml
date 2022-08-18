@@ -9,6 +9,7 @@ import './index.css';
 import App from './App';
 import Music from "./pages/Music";
 import Notes from "./pages/Notes";
+import NoteViewer from "./pages/NoteViewer";
 import Resume from "./pages/Resume";
 import Test from "./pages/Test";
 
@@ -20,6 +21,7 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="resume" element={<Resume />} />
       <Route path="notes" element={<Notes />} />
+      <Route path="notes/:note" element={<NoteViewer />} />
       <Route path="music" element={<Music />} />
       <Route path="test" element={<Test />} />
     </Routes>
