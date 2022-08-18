@@ -1,31 +1,66 @@
+import React from 'react';
 import Footer from "../components/Footer";
 
-function fillNotesList(data) {
-  let notes = document.getElementById('notes');
-  notes.innerHTML = '';
+export default class Notes extends React.Component {
+  constructor () {
+    super();
 
-  for (let i = 0; i < data.length; i++) {
-    let pdf_name = data[i].name.replace('.tex', '.pdf');
-    let note_name = pdf_name.replace('.pdf', '');
-    let pdf_url = `https://docs.google.com/viewer?url=https://dmitrvk.ml/public/notes/${note_name}/${pdf_name}`;
+    this.state = {
+      notes: [],
+    };
+  }
 
-    notes.innerHTML += `<a href="${pdf_url}"><li>${note_name}</li></a>`;
+  componentDidMount() {
+    const api_url = 'https://api.github.com/repos/dmitrvk/notes/contents/notes';
+
+    fetch(api_url)
+      .then(response => response.json())
+      .then(data => this.setState({ notes: data }))
+      .catch(error => console.error(error));
+  }
+
+  render() {
+    return (
+      <main>
+        <h2>Notes</h2>
+        <section id="notes" className="notes">
+          {
+            this.state.notes.map(note => {
+              let pdf_name = note.name.replace('.tex', '.pdf');
+              let note_name = pdf_name.replace('.pdf', '');
+              let pdf_url = `https://docs.google.com/viewer?url=https://dmitrvk.ml/public/notes/${note_name}/${pdf_name}`;
+              let thumbnail_url = `https://dmitrvk.ml/public/notes/${note_name}/${note_name}-thumbnail.png`;
+
+              return (
+                <Note
+                  key={note_name}
+                  name={note_name}
+                  pdf_url={pdf_url}
+                  thumbnail_url={thumbnail_url}
+                />
+              );
+            })
+          }
+        </section>
+        <Footer />
+      </main>
+    );
   }
 }
 
-export default function Notes() {
-  const api_url = 'https://api.github.com/repos/dmitrvk/notes/contents/notes'
-
-  fetch(api_url)
-    .then(response => response.json())
-    .then(data => fillNotesList(data))
-    .catch(error => console.error(error));
-
-  return (
-    <main>
-      <h2>Notes</h2>
-      <ul id="notes"></ul>
-      <Footer />
-    </main>
-  );
+class Note extends React.Component {
+  render() {
+    return (
+      <a className="note" href={this.props.pdf_url}>
+        <div className="note-inner">
+          <img
+            className="note-thumbnail"
+            src={this.props.thumbnail_url}
+            alt={this.props.name}
+          />
+          <p className="note-caption">{this.props.name}</p>
+        </div>
+      </a>
+    );
+  }
 }
