@@ -28,7 +28,7 @@ export default class Notes extends React.Component {
             this.state.notes.map(note => {
               let pdf_name = note.name.replace('.tex', '.pdf');
               let note_name = pdf_name.replace('.pdf', '');
-              let pdf_url = `https://docs.google.com/viewer?url=https://dmitrvk.ml/public/notes/${note_name}/${pdf_name}`;
+              let pdf_url = `/notes/${note_name}`;
               let thumbnail_url = `https://dmitrvk.ml/public/notes/${note_name}/${note_name}-thumbnail.png`;
 
               return (
