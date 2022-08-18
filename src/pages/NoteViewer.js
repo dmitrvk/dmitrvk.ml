@@ -6,31 +6,35 @@ export default class NoteViewer extends React.Component {
     super();
 
     this.state = {
+      note: window.location.pathname.replace('/notes/', '').replace('/', ''),
+      title: '',
       pages: [],
     };
   }
 
   componentDidMount() {
-    this.setState({
-      pages: [
-        'https://dmitrvk.ml/public/notes/python/pages/python-0.png',
-        'https://dmitrvk.ml/public/notes/python/pages/python-1.png',
-        'https://dmitrvk.ml/public/notes/python/pages/python-2.png',
-        'https://dmitrvk.ml/public/notes/python/pages/python-3.png',
-      ],
-    })
+    fetch(`${process.env.REACT_APP_API_URL}/notes/${this.state.note}/`)
+      .then(response => response.json())
+      .then(data => this.setState({
+        title: data.title,
+        pages: data.pages,
+      }))
+      .catch(error => console.error(error));
   }
 
   render() {
     return (
       <main>
+        <h2>{this.state.title}</h2>
         <section>
           {
-            this.state.pages.map(page => {
+            this.state.pages.map((page, index, pages) => {
+              let delimiter = (index < pages.length - 1) ? <hr /> : '';
+
               return (
-                <div>
+                <div key={page}>
                   <img className="page" src={page} alt="Page" />
-                  <hr />
+                  {delimiter}
                 </div>
               );
             })

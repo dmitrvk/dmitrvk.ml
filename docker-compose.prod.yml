@@ -17,6 +17,8 @@ services:
     image: ghcr.io/dmitrvk/dmitrvkml_backend:latest
     networks:
       - dmitrvkml_network
+    volumes:
+      - $HOME/public:/public
 
 volumes:
   caddy_data:
