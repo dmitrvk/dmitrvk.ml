@@ -26,16 +26,14 @@ export default class Notes extends React.Component {
         <section id="notes" className="notes">
           {
             this.state.notes.map(note => {
-              let pdf_name = note.name.replace('.tex', '.pdf');
-              let note_name = pdf_name.replace('.pdf', '');
-              let pdf_url = `/notes/${note_name}`;
-              let thumbnail_url = `https://dmitrvk.ml/public/notes/${note_name}/${note_name}-thumbnail.png`;
+              let url = `/notes/${note.name}`;
+              let thumbnail_url = `https://dmitrvk.ml/public/notes/${note.name}/${note.name}-thumbnail.png`;
 
               return (
                 <Note
-                  key={note_name}
-                  name={note_name}
-                  pdf_url={pdf_url}
+                  key={note.name}
+                  name={note.name}
+                  url={url}
                   thumbnail_url={thumbnail_url}
                 />
               );
@@ -51,7 +49,7 @@ export default class Notes extends React.Component {
 class Note extends React.Component {
   render() {
     return (
-      <a className="note" href={this.props.pdf_url}>
+      <a className="note" href={this.props.url}>
         <div className="note-inner">
           <img
             className="note-thumbnail"
