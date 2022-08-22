@@ -19,3 +19,7 @@ www.dmitrvk.ml {
 s.dmitrvk.ml {
     reverse_proxy http://short:8000
 }
+
+notifications.dmitrvk.ml {
+    reverse_proxy http://notifications:8000
+}
