@@ -21,8 +21,7 @@ s.dmitrvk.ml {
 }
 
 notifications.dmitrvk.ml {
-    handle /docs/* {
-        rewrite * /
+    handle_path /docs/* {
         reverse_proxy http://notifications_docs:8080
     }
 
