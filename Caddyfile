@@ -20,6 +20,15 @@ s.dmitrvk.ml {
     reverse_proxy http://short:8000
 }
 
+catalogs.dmitrvk.ml {
+    handle /static/* {
+        root * /srv/catalogs
+        file_server
+    }
+
+    reverse_proxy http://catalogs:8000
+}
+
 notifications.dmitrvk.ml {
     handle /static/* {
         root * /srv/notifications
