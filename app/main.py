@@ -13,7 +13,7 @@ class Endpoints:
 
 @app.route(Endpoints.ROOT)
 def index():
-    return f'<html><a href="{Endpoints.NOTES}">Notes</a></html>'
+    return flask.render_template('index.html')
 
 
 @app.route(Endpoints.NOTES)
