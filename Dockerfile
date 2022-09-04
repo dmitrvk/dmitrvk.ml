@@ -1,17 +1,11 @@
-FROM node:18
-
-ARG API_URL
+FROM python:3.10.6-slim
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY requirements.txt ./
 
-RUN npm install
+RUN pip install --no-cache-dir --upgrade pip -r requirements.txt
 
 COPY . .
 
-EXPOSE 3000
-
-ENV REACT_APP_API_URL $API_URL
-
-CMD [ "npm", "start" ]
+EXPOSE 8000
