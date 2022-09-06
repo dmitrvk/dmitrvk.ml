@@ -23,6 +23,14 @@ class TestMain:
         response = client.get('/').data.decode('utf-8')
         assert f'href="{main.Endpoints.NOTES}"' in response
 
+    def test_notes_page(self, client) -> None:
+        response = client.get('/notes').data.decode('utf-8')
+        assert f'href="/notes/python"' in response
+
+    def test_note_viewer_page(self, client) -> None:
+        response = client.get('/notes/python').data.decode('utf-8')
+        assert f'<img' in response
+
     def test_routes_exist(self) -> None:
         endpoints = (
             value
