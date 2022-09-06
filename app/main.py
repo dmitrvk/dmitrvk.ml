@@ -1,9 +1,21 @@
 from typing import Final
 
 import flask
+import whitenoise
 
 
 app = flask.Flask(__name__)
+
+app.wsgi_app = whitenoise.WhiteNoise(
+    application=app.wsgi_app,
+    root='static/',
+    prefix='static/',
+)
+
+app.wsgi_app.add_files(
+    root='public/',
+    prefix='public/',
+)
 
 
 class Endpoints:
