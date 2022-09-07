@@ -42,6 +42,17 @@ class TestMain:
         assert 'href="/notes/python"' in response
         assert 'href="/notes/linux"' in response
 
+    def test_music_page(self, client, fs) -> None:
+        base_directory = pathlib.Path(__file__).resolve().parent.parent
+        notes_directory = base_directory / 'public' / 'music'
+
+        fs.add_real_directory(base_directory / 'app' / 'templates')
+        fs.create_dir(notes_directory / 'piece')
+
+        response = client.get(f'{main.Endpoints.MUSIC}').data.decode('utf-8')
+
+        assert 'href="/music/piece"' in response
+
     def test_note_viewer_page(self, client, fs) -> None:
         base_directory = pathlib.Path(__file__).resolve().parent.parent
         python_directory = base_directory / 'public' / 'notes' / 'python'
@@ -59,6 +70,25 @@ class TestMain:
         fs.add_real_directory(base_directory / 'app' / 'templates')
 
         response = client.get('/notes/python')
+        assert response.status_code == http.HTTPStatus.NOT_FOUND
+        assert 'dmitrvk.ml' in response.data.decode('utf-8')
+
+    def test_piece_viewer_page(self, client, fs) -> None:
+        base_directory = pathlib.Path(__file__).resolve().parent.parent
+        piece_directory = base_directory / 'public' / 'music' / 'piece'
+
+        fs.add_real_directory(base_directory / 'app' / 'templates')
+        fs.create_file(piece_directory / 'piece-page1.png')
+        fs.create_file(piece_directory / 'piece-page2.png')
+
+        response = client.get('/music/piece').data.decode('utf-8')
+        assert response.count('<img') == 2
+
+    def test_piece_viewer_page_not_found(self, client, fs) -> None:
+        base_directory = pathlib.Path(__file__).resolve().parent.parent
+        fs.add_real_directory(base_directory / 'app' / 'templates')
+
+        response = client.get('/music/piece')
         assert response.status_code == http.HTTPStatus.NOT_FOUND
         assert 'dmitrvk.ml' in response.data.decode('utf-8')
 

@@ -145,7 +145,17 @@ footer {
   grid-row-gap: 24px;
 }
 
+.music {
+  display: grid;
+  grid-row-gap: 24px;
+}
+
 .note {
+  text-decoration: none;
+  outline: none;
+}
+
+.piece {
   text-decoration: none;
   outline: none;
 }
@@ -156,7 +166,17 @@ footer {
   transition-duration: 0.25s;
 }
 
+.piece-inner {
+  display: grid;
+  transition-property: transform;
+  transition-duration: 0.25s;
+}
+
 .note-inner:hover, .note-inner:focus, .note-inner:active {
+  transform: scale(1.05);
+}
+
+.piece:hover, .piece-inner:focus, .piece-inner:active {
   transform: scale(1.05);
 }
 
@@ -167,7 +187,21 @@ footer {
   justify-self: center;
 }
 
+.piece-thumbnail {
+  grid-area: 1 / 1 / 3 / 1;
+  width: 180px;
+  background-color: white;
+  justify-self: center;
+}
+
 .note-caption {
+  grid-area: 2 / 1 / 3 / 1;
+  background-color: white;
+  width: 180px;
+  justify-self: center;
+}
+
+.piece-caption {
   grid-area: 2 / 1 / 3 / 1;
   background-color: white;
   width: 180px;
