@@ -33,9 +33,12 @@ def index():
 
 @app.route(Endpoints.NOTES)
 def notes():
-    return flask.render_template('notes.html', notes=notes_loader.get())
+    return flask.render_template('notes.html', notes=notes_loader.get_list())
 
 
 @app.route(Endpoints.NOTE_VIEWER)
 def note_viewer(note: str):
-    return flask.render_template('note_viewer.html')
+    return flask.render_template(
+        'note_viewer.html',
+        note=notes_loader.get(note),
+    )

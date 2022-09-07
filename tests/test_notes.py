@@ -15,7 +15,7 @@ class TestNotes:
         fs.create_dir(notes_directory / 'python')
         fs.create_dir(notes_directory / 'linux')
 
-        notes = notes_loader.get()
+        notes = notes_loader.get_list()
 
         assert len(notes) == 2
         assert notes[0].get('name') == 'python'
@@ -23,3 +23,20 @@ class TestNotes:
         assert notes[0].get('thumbnail_url') == (
             '/public/notes/python/python-thumbnail.png'
         )
+
+    def test_note(self, fs: 'fake_fs.FakeFilesystem') -> None:
+        base_directory = pathlib.Path(__file__).resolve().parent.parent
+        python_directory = base_directory / 'public' / 'notes' / 'python'
+
+        fs.create_file(python_directory / 'pages' / 'python-0.png')
+        fs.create_file(python_directory / 'pages' / 'python-1.png')
+        fs.create_file(python_directory / 'pages' / 'python-2.png')
+
+        notes = notes_loader.get('python')
+
+        assert notes.get('name') == 'python'
+        assert notes.get('pages') == [
+            '/public/notes/python/pages/python-0.png',
+            '/public/notes/python/pages/python-1.png',
+            '/public/notes/python/pages/python-2.png',
+        ]

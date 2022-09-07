@@ -1,7 +1,7 @@
 import pathlib
 
 
-def get() -> list:
+def get_list() -> list:
     base_directory = pathlib.Path(__file__).resolve().parent.parent
     notes_directory = base_directory / 'public' / 'notes'
 
@@ -16,3 +16,19 @@ def get() -> list:
         }
         for path in paths
     ]
+
+def get(note: str) -> dict:
+    base_directory = pathlib.Path(__file__).resolve().parent.parent
+    notes_directory = base_directory / 'public' / 'notes'
+
+    note_directory = notes_directory / note
+    pages_directory = note_directory / 'pages'
+    pages = (page for page in pages_directory.iterdir())
+    pages_urls = sorted(
+        f'/public/notes/{note}/pages/{page.name}' for page in pages
+    )
+
+    return {
+        'name': note,
+        'pages': pages_urls,
+    }

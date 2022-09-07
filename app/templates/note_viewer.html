@@ -197,11 +197,15 @@
   <body>
     <div class="root">
       <main>
-        <h2>python</h2>
+        <h2>{{ note.name }}</h2>
         <section>
           <div>
-            <img class="page" src="/public/notes/python/pages/python-0.png" alt="Page 0" />
-            <hr />
+            {% for page in note.pages %}
+              <img class="page" src="{{ page }}" alt="Page {{ loop.index - 1 }}" />
+                {% if loop.index < note.pages|length %}
+                  <hr />
+                {% endif %}
+            {% endfor %}
           </div>
         </section>
         <footer>

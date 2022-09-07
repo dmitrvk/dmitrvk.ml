@@ -38,9 +38,17 @@ class TestMain:
         assert f'href="/notes/python"' in response
         assert f'href="/notes/linux"' in response
 
-    def test_note_viewer_page(self, client) -> None:
+    def test_note_viewer_page(self, client, fs) -> None:
+        base_directory = pathlib.Path(__file__).resolve().parent.parent
+        python_directory = base_directory / 'public' / 'notes' / 'python'
+
+        fs.add_real_directory(base_directory / 'app' / 'templates')
+        fs.create_file(python_directory / 'pages' / 'python-0.png')
+        fs.create_file(python_directory / 'pages' / 'python-1.png')
+        fs.create_file(python_directory / 'pages' / 'python-2.png')
+
         response = client.get('/notes/python').data.decode('utf-8')
-        assert f'<img' in response
+        assert response.count('<img') == 3
 
     def test_routes_exist(self) -> None:
         endpoints = (
