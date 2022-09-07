@@ -12,6 +12,7 @@ app.wsgi_app = whitenoise.WhiteNoise(
     application=app.wsgi_app,
     root='static/',
     prefix='static/',
+    autorefresh=True,
 )
 
 app.wsgi_app.add_files(
