@@ -39,22 +39,24 @@ def notes():
 
 @app.route(Endpoints.NOTE_VIEWER)
 def note_viewer(note: str):
-    note = notes_loader.get(note)
+    _note = notes_loader.get(note)
 
-    if not note:
+    if not _note:
         flask.abort(http.HTTPStatus.NOT_FOUND)
 
     return flask.render_template(
         'note_viewer.html',
-        note=note,
+        note=_note,
     )
+
 
 @app.errorhandler(http.HTTPStatus.NOT_FOUND)
 def page_not_found(_):
     return flask.render_template('404.html'), http.HTTPStatus.NOT_FOUND
 
+
 @app.errorhandler(http.HTTPStatus.INTERNAL_SERVER_ERROR)
-def page_not_found(_):
+def internal_server_error(_):
     return (
         flask.render_template('500.html'),
         http.HTTPStatus.INTERNAL_SERVER_ERROR,

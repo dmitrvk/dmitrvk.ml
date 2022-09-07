@@ -4,7 +4,6 @@ import pathlib
 import flask
 import pytest
 
-
 from app import main
 
 
