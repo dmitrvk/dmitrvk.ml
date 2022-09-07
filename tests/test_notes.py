@@ -40,3 +40,6 @@ class TestNotes:
             '/public/notes/python/pages/python-1.png',
             '/public/notes/python/pages/python-2.png',
         ]
+
+    def test_non_existing_note(self, fs: 'fake_fs.FakeFilesystem') -> None:
+        assert not notes_loader.get('python')

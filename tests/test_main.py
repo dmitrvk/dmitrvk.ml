@@ -1,3 +1,4 @@
+import http
 import pathlib
 
 import flask
@@ -49,6 +50,10 @@ class TestMain:
 
         response = client.get('/notes/python').data.decode('utf-8')
         assert response.count('<img') == 3
+
+    def test_note_viewer_page_not_found(self, client, fs) -> None:
+        response = client.get('/notes/python')
+        assert response.status_code == http.HTTPStatus.NOT_FOUND
 
     def test_routes_exist(self) -> None:
         endpoints = (

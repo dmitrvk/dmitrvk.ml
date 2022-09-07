@@ -17,12 +17,16 @@ def get_list() -> list:
         for path in paths
     ]
 
-def get(note: str) -> dict:
+def get(note: str) -> dict | None:
     base_directory = pathlib.Path(__file__).resolve().parent.parent
     notes_directory = base_directory / 'public' / 'notes'
 
     note_directory = notes_directory / note
     pages_directory = note_directory / 'pages'
+
+    if not pages_directory.exists():
+        return None
+
     pages = (page for page in pages_directory.iterdir())
     pages_urls = sorted(
         f'/public/notes/{note}/pages/{page.name}' for page in pages

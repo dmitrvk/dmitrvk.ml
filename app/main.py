@@ -1,3 +1,4 @@
+import http
 from typing import Final
 
 import flask
@@ -38,7 +39,12 @@ def notes():
 
 @app.route(Endpoints.NOTE_VIEWER)
 def note_viewer(note: str):
+    note = notes_loader.get(note)
+
+    if not note:
+        flask.abort(http.HTTPStatus.NOT_FOUND)
+
     return flask.render_template(
         'note_viewer.html',
-        note=notes_loader.get(note),
+        note=note,
     )
