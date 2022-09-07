@@ -22,6 +22,7 @@ app.wsgi_app.add_files(
 
 class Endpoints:
     ROOT: Final[str] = '/'
+    RESUME: Final[str] = '/resume'
     NOTES: Final[str] = '/notes'
     NOTE_VIEWER: Final[str] = '/notes/<note>'
 
@@ -29,6 +30,11 @@ class Endpoints:
 @app.route(Endpoints.ROOT)
 def index():
     return flask.render_template('index.html')
+
+
+@app.route(Endpoints.RESUME)
+def resume():
+    return flask.render_template('resume.html')
 
 
 @app.route(Endpoints.NOTES)

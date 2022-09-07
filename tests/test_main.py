@@ -25,6 +25,10 @@ class TestMain:
         response = client.get('/').data.decode('utf-8')
         assert f'href="{main.Endpoints.NOTES}"' in response
 
+    def test_resume_page(self, client) -> None:
+        response = client.get(f'{main.Endpoints.RESUME}').data.decode('utf-8')
+        assert '<img' in response
+
     def test_notes_page(self, client, fs) -> None:
         base_directory = pathlib.Path(__file__).resolve().parent.parent
         notes_directory = base_directory / 'public' / 'notes'
