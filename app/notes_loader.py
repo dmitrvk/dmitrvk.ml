@@ -17,6 +17,7 @@ def get_list() -> list:
         for path in paths
     ]
 
+
 def get(note: str) -> dict | None:
     base_directory = pathlib.Path(__file__).resolve().parent.parent
     notes_directory = base_directory / 'public' / 'notes'

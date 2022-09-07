@@ -6,7 +6,6 @@ import whitenoise
 
 from app import notes_loader
 
-
 app = flask.Flask(__name__)
 
 app.wsgi_app = whitenoise.WhiteNoise(

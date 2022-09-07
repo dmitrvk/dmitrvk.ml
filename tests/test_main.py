@@ -35,8 +35,8 @@ class TestMain:
 
         response = client.get('/notes').data.decode('utf-8')
 
-        assert f'href="/notes/python"' in response
-        assert f'href="/notes/linux"' in response
+        assert 'href="/notes/python"' in response
+        assert 'href="/notes/linux"' in response
 
     def test_note_viewer_page(self, client, fs) -> None:
         base_directory = pathlib.Path(__file__).resolve().parent.parent
