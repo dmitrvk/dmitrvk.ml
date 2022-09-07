@@ -199,16 +199,18 @@
       <main>
         <h2>Notes</h2>
         <section class="notes">
-          <a class="note" href="/notes/python">
+          {% for note in notes %}
+          <a class="note" href="{{ note.url }}">
             <div class="note-inner">
               <img
                 class="note-thumbnail"
-                src="/public/notes/python/python-thumbnail.png"
-                alt="python"
+                src="{{ note.thumbnail_url }}"
+                alt="{{ note.name }}"
               />
-              <p class="note-caption">python</p>
+              <p class="note-caption">{{ note.name }}</p>
             </div>
           </a>
+          {% endfor %}
         </section>
         <footer>
           <p><a href="/">dmitrvk.ml</a> | 2022</p>

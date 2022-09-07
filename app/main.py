@@ -3,6 +3,8 @@ from typing import Final
 import flask
 import whitenoise
 
+from app import notes_loader
+
 
 app = flask.Flask(__name__)
 
@@ -31,7 +33,7 @@ def index():
 
 @app.route(Endpoints.NOTES)
 def notes():
-    return flask.render_template('notes.html')
+    return flask.render_template('notes.html', notes=notes_loader.get())
 
 
 @app.route(Endpoints.NOTE_VIEWER)

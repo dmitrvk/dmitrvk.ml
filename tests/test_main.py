@@ -1,3 +1,5 @@
+import pathlib
+
 import flask
 import pytest
 
@@ -23,9 +25,18 @@ class TestMain:
         response = client.get('/').data.decode('utf-8')
         assert f'href="{main.Endpoints.NOTES}"' in response
 
-    def test_notes_page(self, client) -> None:
+    def test_notes_page(self, client, fs) -> None:
+        base_directory = pathlib.Path(__file__).resolve().parent.parent
+        notes_directory = base_directory / 'public' / 'notes'
+
+        fs.add_real_directory(base_directory / 'app' / 'templates')
+        fs.create_dir(notes_directory / 'python')
+        fs.create_dir(notes_directory / 'linux')
+
         response = client.get('/notes').data.decode('utf-8')
+
         assert f'href="/notes/python"' in response
+        assert f'href="/notes/linux"' in response
 
     def test_note_viewer_page(self, client) -> None:
         response = client.get('/notes/python').data.decode('utf-8')

@@ -1,5 +1,6 @@
 flake8==5.0.4
 Flask==2.2.2
+pyfakefs==4.6.3
 pytest==7.1.2
 uvicorn==0.18.2
 whitenoise==6.2.0
