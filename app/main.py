@@ -48,3 +48,14 @@ def note_viewer(note: str):
         'note_viewer.html',
         note=note,
     )
+
+@app.errorhandler(http.HTTPStatus.NOT_FOUND)
+def page_not_found(_):
+    return flask.render_template('404.html'), http.HTTPStatus.NOT_FOUND
+
+@app.errorhandler(http.HTTPStatus.INTERNAL_SERVER_ERROR)
+def page_not_found(_):
+    return (
+        flask.render_template('500.html'),
+        http.HTTPStatus.INTERNAL_SERVER_ERROR,
+    )

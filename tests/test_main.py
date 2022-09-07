@@ -52,8 +52,12 @@ class TestMain:
         assert response.count('<img') == 3
 
     def test_note_viewer_page_not_found(self, client, fs) -> None:
+        base_directory = pathlib.Path(__file__).resolve().parent.parent
+        fs.add_real_directory(base_directory / 'app' / 'templates')
+
         response = client.get('/notes/python')
         assert response.status_code == http.HTTPStatus.NOT_FOUND
+        assert 'dmitrvk.ml' in response.data.decode('utf-8')
 
     def test_routes_exist(self) -> None:
         endpoints = (
