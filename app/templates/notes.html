@@ -1,35 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Notes, sheet music" />
-    <title>Dmitry Kalyukov</title>
-    <link rel="stylesheet" href="/static/css/normalize.css"/>
-    <link rel="stylesheet" href="/static/css/style.css"/>
-  </head>
-  <body>
-    <div class="root">
-      <main>
-        <h2>Notes</h2>
-        <section class="notes">
-          {% for note in notes %}
-          <a class="note" href="{{ note.url }}">
-            <div class="note-inner">
-              <img
-                class="note-thumbnail"
-                src="{{ note.thumbnail_url }}"
-                alt="{{ note.name }}"
-              />
-              <p class="note-caption">{{ note.name }}</p>
-            </div>
-          </a>
-          {% endfor %}
-        </section>
-        <footer>
-          <p><a href="/">dmitrvk.ml</a> | 2022</p>
-        </footer>
-      </main>
+{% extends "base.html" %}
+{% block content %}
+<h2>Notes</h2>
+<section class="notes">
+  {% for note in notes %}
+  <a class="note" href="{{ note.url }}">
+    <div class="note-inner">
+      <img
+        class="note-thumbnail"
+        src="{{ note.thumbnail_url }}"
+        alt="{{ note.name }}"
+      />
+      <p class="note-caption">{{ note.name }}</p>
     </div>
-  </body>
-</html>
+  </a>
+  {% endfor %}
+</section>
+{% endblock content %}

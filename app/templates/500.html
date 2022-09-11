@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Notes, sheet music" />
-    <title>Dmitry Kalyukov</title>
-    <link rel="stylesheet" href="/static/css/normalize.css"/>
-    <link rel="stylesheet" href="/static/css/style.css"/>
-  </head>
-  <body>
-    <div class="root">
-      <main>
-        <h2>500 Internal Server Error</h2>
-        <footer>
-          <p><a href="/">dmitrvk.ml</a> | 2022</p>
-        </footer>
-      </main>
-    </div>
-  </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h2>500 Internal Server Error</h2>
+{% endblock content %}
