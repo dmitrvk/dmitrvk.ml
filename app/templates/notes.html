@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Notes</h2>
+<section class="notes">
+  {% for note in notes %}
+  <a class="note" href="{{ note.url }}">
+    <div class="note-inner">
+      <img
+        class="note-thumbnail"
+        src="{{ note.thumbnail_url }}"
+        alt="{{ note.name }}"
+      />
+      <p class="note-caption">{{ note.name }}</p>
+    </div>
+  </a>
+  {% endfor %}
+</section>
+{% endblock content %}

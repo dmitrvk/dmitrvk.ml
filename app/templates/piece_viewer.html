@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<section>
+  <div>
+    {% for page in piece.pages %}
+      <img class="page" src="{{ page }}" alt="Page {{ loop.index - 1 }}" />
+        {% if loop.index < piece.pages|length %}
+          <hr />
+        {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock content %}

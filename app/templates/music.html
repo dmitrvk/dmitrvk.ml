@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Music</h2>
+<section class="music">
+  {% for piece in music %}
+  <a class="piece" href="{{ piece.url }}">
+    <div class="piece-inner">
+      <img
+        class="piece-thumbnail"
+        src="{{ piece.thumbnail_url }}"
+        alt="{{ piece.name }}"
+      />
+      <p class="piece-caption">{{ piece.name }}</p>
+    </div>
+  </a>
+  {% endfor %}
+</section>
+{% endblock content %}
