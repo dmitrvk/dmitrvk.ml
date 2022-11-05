@@ -1,0 +1,27 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      USER: ${{ secrets.USER }}
+      HOST: ${{ secrets.HOST }}
+      PORT: ${{ secrets.PORT }}
+      PAT: ${{ secrets.PAT }}
+      PROJECT_NAME: dmitrvkml
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up SSH and deploy
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -p "${{ secrets.PORT }}" "${{ secrets.HOST}}" > ~/.ssh/known_hosts
+        eval `ssh-agent -s`
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr --delete '\r' | ssh-add -
+        ./deploy.sh

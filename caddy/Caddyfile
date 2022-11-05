@@ -1,0 +1,13 @@
+dmitrvk.ml {
+    encode gzip
+    reverse_proxy http://app:8000
+
+    handle /public/* {
+      root * /srv
+      file_server
+    }
+}
+
+www.dmitrvk.ml {
+    redir https://dmitrvk.ml{uri}
+}
