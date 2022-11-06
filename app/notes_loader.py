@@ -11,6 +11,7 @@ def get_list() -> list:
         {
             'name': path.name,
             'url': f'/notes/{path.name}',
+            'pdf': f'/public/notes/{path.name}/{path.name}.pdf',
             'thumbnail_url':
                 f'/public/notes/{path.name}/{path.name}-thumbnail.png',
         }
@@ -36,4 +37,5 @@ def get(note: str) -> dict | None:
     return {
         'name': note,
         'pages': pages_urls,
+        'pdf': f'/public/notes/{note}/{note}.pdf',
     }

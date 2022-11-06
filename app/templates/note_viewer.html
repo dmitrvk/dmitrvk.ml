@@ -2,6 +2,13 @@
 {% block content %}
 <h2>{{ note.name }}</h2>
 <section>
+  <p>
+    <a
+      href="{{ note.pdf }}"
+      target="_blank"
+      rel="noreferrer"
+    >Download</a>
+  </p>
   <div>
     {% for page in note.pages %}
       <img class="page" src="{{ page }}" alt="Page {{ loop.index - 1 }}" />

@@ -20,6 +20,7 @@ class TestNotes:
         assert len(notes) == 2
         assert notes[0].get('name') == 'python'
         assert notes[0].get('url') == '/notes/python'
+        assert notes[0].get('pdf') == '/public/notes/python/python.pdf'
         assert notes[0].get('thumbnail_url') == (
             '/public/notes/python/python-thumbnail.png'
         )
@@ -40,6 +41,7 @@ class TestNotes:
             '/public/notes/python/pages/python-1.png',
             '/public/notes/python/pages/python-2.png',
         ]
+        assert notes.get('pdf') == '/public/notes/python/python.pdf'
 
     def test_non_existing_note(self, fs: 'fake_fs.FakeFilesystem') -> None:
         assert not notes_loader.get('python')
